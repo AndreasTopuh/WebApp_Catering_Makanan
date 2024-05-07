@@ -1,6 +1,7 @@
 const {
   findItemsPesanan,
   createItemPesanan,
+  findItemPesananById,
   updateItemPesanan,
   deleteItemPesanan,
 } = require("./itemPesanan.repository");
@@ -8,6 +9,11 @@ const {
 const getAllItemsPesanan = async () => {
   const itemsPesanan = await findItemsPesanan();
   return itemsPesanan;
+};
+
+const getItemPesananById = async (id) => {
+  const itemPesanan = await findItemPesananById(id);
+  return itemPesanan;
 };
 
 const createNewItemPesanan = async (data) => {
@@ -34,4 +40,5 @@ module.exports = {
   createNewItemPesanan,
   updateExistingItemPesanan,
   deleteExistingItemPesanan,
+  getItemPesananById,
 };
