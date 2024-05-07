@@ -5,6 +5,13 @@ const findItemsPesanan = async () => {
   return itemsPesanan;
 };
 
+const findItemPesananById = async (id) => {
+  const itemPesanan = await prisma.ItemPesanan.findUnique({
+    where: { id: parseInt(id) },
+  });
+  return itemPesanan;
+};
+
 const createItemPesanan = async (data) => {
   const existingPesanan = await prisma.Pesanan.findUnique({
     where: { id: data.pesananId },
@@ -35,6 +42,7 @@ const deleteItemPesanan = async (id) => {
 
 module.exports = {
   findItemsPesanan,
+  findItemPesananById,
   createItemPesanan,
   updateItemPesanan,
   deleteItemPesanan,

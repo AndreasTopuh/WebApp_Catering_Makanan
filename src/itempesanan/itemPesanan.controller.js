@@ -1,14 +1,21 @@
 const {
   getAllItemsPesanan,
   createNewItemPesanan,
-  updateItemPesanan,
-  deleteItemPesanan,
+  updateExistingItemPesanan,
+  deleteExistingItemPesanan,
+  getItemPesananById
+
 } = require("./itemPesanan.service");
 const router = require("express").Router();
 
 router.get("/", async (req, res) => {
   const itemsPesanan = await getAllItemsPesanan();
   res.json(itemsPesanan);
+});
+
+router.get("/:id", async (req, res) => {
+  const itemPesanan = await getItemPesananById(req.params.id);
+  res.json(itemPesanan);
 });
 
 router.post("/", async (req, res) => {
@@ -21,12 +28,12 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const updatedItemPesanan = await updateItemPesanan(req.params.id, req.body);
+  const updatedItemPesanan = await updateExistingItemPesanan(req.params.id, req.body);
   res.json(updatedItemPesanan);
 });
 
 router.delete("/:id", async (req, res) => {
-  const deletedItemPesanan = await deleteItemPesanan(req.params.id);
+  const deletedItemPesanan = await deleteExistingItemPesanan(req.params.id);
   res.json(deletedItemPesanan);
 });
 
